@@ -1,20 +1,17 @@
-window.onload = function() {
-    var pos = 0;
+var images = ["http://www.sololearn.com/uploads/slider/1.jpg","http://www.sololearn.com/uploads/slider/2.jpg","http://www.sololearn.com/uploads/slider/3.jpg"]
 
-    var box = document.getElementById("box");
+var num = 0;
 
-    var t = setInterval(move, 10);
+function next(){
+    var slider = document.getElementById("slider");
+    num++;
+    if (num >= images.length) num = 0;
+    slider.src = images[num];
+}
 
-    function move() {
-        if (pos>=150) {
-            clearInterval(t);
-            box.style.left = 0+"px";
-            box.style.top = 0+"px";
-        }
-        else {
-            pos ++;
-            box.style.left = pos+"px";
-            box.style.top = pos+"px";
-        }
-    }   
+function prev(){
+    var slider = document.getElementById("slider");
+    num--;
+    if (num < 0) num = images.length - 1;
+    slider.src = images[num];
 }

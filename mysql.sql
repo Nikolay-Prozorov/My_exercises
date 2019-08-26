@@ -1,15 +1,40 @@
-DROP TABLE IF EXISTS regions;
-CREATE TABLE regions (
-    id INT PRIMARY KEY AUTO_INCREMENT, 
-    name VARCHAR(255) NOT NULL UNIQUE,
-    active BOOLEAN NOT NULL DEFAULT TRUE
+DROP TABLE IF EXISTS product;
+CREATE TABLE product (
+    maker VARCHAR(10) NOT NULL, 
+    model VARCHAR(50) NOT NULL UNIQUE,
+    type VARCHAR(50) NOT NULL
 ) ENGINE InnoDB;
 
-DROP TABLE IF EXISTS cities;
-CREATE TABLE cities (
-    id INT PRIMARY KEY AUTO_INCREMENT, 
-    name VARCHAR(255) NOT NULL UNIQUE,
-    regions_id INT NOT NULL, 
-    active BOOLEAN NOT NULL DEFAULT TRUE,
-    FOREIGN KEY (regions_id) REFERENCES regions(id)
+DROP TABLE IF EXISTS pc;
+CREATE TABLE pc (
+    code INT PRIMARY KEY NOT NULL, 
+    model VARCHAR(50) NOT NULL UNIQUE,
+    speed SMALLINT NOT NULL, 
+    ram SMALLINT NOT NULL, 
+    hd REAL NOT NULL,
+    cd VARCHAR(10) NOT NULL,
+    price INT,
+    FOREIGN KEY (model) REFERENCES product(model)
+) ENGINE InnoDB;
+
+DROP TABLE IF EXISTS laptop;
+CREATE TABLE laptop (
+    code INT PRIMARY KEY NOT NULL, 
+    model VARCHAR(50) NOT NULL UNIQUE,
+    speed SMALLINT NOT NULL, 
+    ram SMALLINT NOT NULL, 
+    hd REAL NOT NULL,
+    price INT,
+    screen TINYINT NOT NULL,
+    FOREIGN KEY (model) REFERENCES product(model)
+) ENGINE InnoDB;
+
+DROP TABLE IF EXISTS printer;
+CREATE TABLE printer (
+    code INT PRIMARY KEY NOT NULL, 
+    model VARCHAR(50) NOT NULL UNIQUE,
+    color CHAR(1) NOT NULL,
+    type VARCHAR(10) NOT NULL,
+    price INT,
+    FOREIGN KEY (model) REFERENCES product(model)
 ) ENGINE InnoDB;
